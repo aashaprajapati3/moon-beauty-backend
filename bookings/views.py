@@ -21,7 +21,7 @@ from .models import Booking
 from .serializers import BookingSerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework.generics import ListAPIView
-
+from django.middleware.csrf import get_token
 class BookingListCreateView(generics.ListCreateAPIView):
     queryset = Booking.objects.all().order_by('-created_at')
     serializer_class = BookingSerializer
@@ -128,7 +128,11 @@ class AdminBookingStatusView(APIView):
 @method_decorator(csrf_protect, name="dispatch")
 class AdminLoginView(View):
     def get(self, request):
-        return JsonResponse({"message": "CSRF cookie set."})
+        csrf_token = get_token(request)
+
+        return JsonResponse({
+            "csrf_token": csrf_token
+        })
 
     def post(self, request):
         try:
@@ -156,8 +160,9 @@ class AdminLoginView(View):
 
         login(request, user)
 
-        return JsonResponse({"message": "Login successful."})
-
+        return JsonResponse({
+            "message": "Login successful."
+        })
 class AdminLogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
