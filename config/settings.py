@@ -140,13 +140,15 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://moon-beauty-frontend.vercel.app",
 ]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+    "https://moon-beauty-frontend.vercel.app",
 ]
