@@ -152,3 +152,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "https://moon-beauty-frontend.vercel.app",
 ]
+# Production cross-site authentication cookies
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
