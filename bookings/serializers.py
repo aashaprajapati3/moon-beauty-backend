@@ -1,4 +1,3 @@
-
 from rest_framework import serializers
 from .models import Booking
 
@@ -6,6 +5,7 @@ from .models import Booking
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
+
         fields = [
             'id',
             'name',
@@ -15,15 +15,27 @@ class BookingSerializer(serializers.ModelSerializer):
             'time',
             'address',
             'status',
+            'cancellation_reason',
+            'reschedule_reason',
             'created_at',
+            'updated_at',
         ]
-        read_only_fields = ['id', 'status', 'created_at']
+
+        read_only_fields = [
+            'id',
+            'status',
+            'created_at',
+            'updated_at',
+        ]
+
         validators = []
+
     def validate_phone(self, value):
         if not value.isdigit() or len(value) != 10:
             raise serializers.ValidationError(
                 "Enter a valid 10-digit phone number."
             )
+
         return value
 
     def validate(self, attrs):
