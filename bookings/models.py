@@ -4,6 +4,7 @@ from django.db.models import Q
 
 class Booking(models.Model):
     SERVICE_CHOICES = [
+        # Makeup
         ('Engagement Makeup', 'Engagement Makeup'),
         ('Party Makeup', 'Party Makeup'),
         ('Bridal Makeup', 'Bridal Makeup'),
@@ -16,14 +17,20 @@ class Booking(models.Model):
         ('Festive Makeup', 'Festive Makeup'),
         ('Baby Shower Makeup', 'Baby Shower Makeup'),
         ('Photoshoot Makeup', 'Photoshoot Makeup'),
+
+        # Beauty
         ('Facial', 'Facial'),
         ('Eyebrow', 'Eyebrow'),
         ('Waxing', 'Waxing'),
         ('Manicure', 'Manicure'),
         ('Pedicure', 'Pedicure'),
         ('Manicure & Pedicure', 'Manicure & Pedicure'),
+
+        # Hair
         ('Hair Styling', 'Hair Styling'),
         ('Hair Spa', 'Hair Spa'),
+
+        # Mehendi
         ('Bridal Mehendi', 'Bridal Mehendi'),
         ('Engagement Mehendi', 'Engagement Mehendi'),
         ('Arabic Mehendi', 'Arabic Mehendi'),
@@ -49,6 +56,7 @@ class Booking(models.Model):
     ]
 
     name = models.CharField(max_length=100)
+
     phone = models.CharField(max_length=10)
 
     service = models.CharField(
